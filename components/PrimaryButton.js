@@ -1,8 +1,9 @@
-import { View, Text, Pressable } from "react-native"
+import { View, Text } from 'react-native';
 
-export default function PrimaryButton({children}) {
-    return 
+export default function PrimaryButton({ children }) {
+  return (
     <View>
-        <Text>{children}</Text>
+      <Text>{children}</Text>
     </View>
+  );
 }
