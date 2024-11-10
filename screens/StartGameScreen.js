@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowRadius: 6,
     shadowOpacity: 0.4,
-    backgroundColor: '#72063c',
+    backgroundColor: '#4e0329',
   },
   numberInput: {
     height: 50,
