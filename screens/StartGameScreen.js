@@ -30,7 +30,7 @@ export default function StartGameScreen() {
       return;
     }
 
-    return;
+    console.log('valid number');
   }
 
   return (
@@ -42,7 +42,7 @@ export default function StartGameScreen() {
         autoCapitalize="none"
         autoCorrect={false}
         value={enteredNumber}
-        onChange={numberInputHandler}
+        onChangeText={numberInputHandler}
       ></TextInput>
       <View style={styles.buttonsContainer}>
         <View style={styles.button}>
