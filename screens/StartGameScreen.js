@@ -9,6 +9,10 @@ export default function StartGameScreen() {
     setEnteredNumber(enteredText)
   }
 
+  function confirmInputHandler() {
+    
+  }
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
