@@ -1,5 +1,6 @@
 import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useFonts } from 'expo-font';
 import { useState } from 'react';
 import Colors from './util/colors';
 
@@ -11,6 +12,8 @@ export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
 
+  useFonts({});
+
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);
     setGameIsOver(false);
@@ -19,15 +22,21 @@ export default function App() {
   let screen = <StartGameScreen pickedNumberHandler={pickedNumberHandler} />;
 
   if (userNumber) {
-    screen = <GameScreen userNumber={userNumber} gameOverHandler={gameOverHandler} setUserNumber={setUserNumber}/>;
+    screen = (
+      <GameScreen
+        userNumber={userNumber}
+        gameOverHandler={gameOverHandler}
+        setUserNumber={setUserNumber}
+      />
+    );
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen />
+    screen = <GameOverScreen />;
   }
 
-  function gameOverHandler(){
-    setGameIsOver(true)
+  function gameOverHandler() {
+    setGameIsOver(true);
   }
 
   return (
