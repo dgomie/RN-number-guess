@@ -5,7 +5,7 @@ import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons } from '@expo/vector-icons';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 function generateRandomBetween(min, max, exclude) {
@@ -24,7 +24,6 @@ let maxBoundary = 100;
 export default function GameScreen({
   userNumber,
   gameOverHandler,
-  setUserNumber,
 }) {
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState(initialGuess);
@@ -34,6 +33,11 @@ export default function GameScreen({
       gameOverHandler();
     }
   }, [currentGuess, userNumber, gameOverHandler]);
+
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
 
   function nextGuessHandler(direction) {
     if (
@@ -65,11 +69,13 @@ export default function GameScreen({
       <Title>Opponent's Guess</Title>
       <NumberContainer>{currentGuess}</NumberContainer>
       <Card>
-        <InstructionText style={styles.instructionText}>Lower or Higher?</InstructionText>
+        <InstructionText style={styles.instructionText}>
+          Lower or Higher?
+        </InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={styles.button}>
             <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
-              <Ionicons name='remove' size={24}/>
+              <Ionicons name="remove" size={24} />
             </PrimaryButton>
           </View>
           <View style={styles.button}>
@@ -77,7 +83,7 @@ export default function GameScreen({
               onPress={nextGuessHandler.bind(this, 'higher')}
               style={styles.button}
             >
-              <Ionicons name='add' size={24}/>
+              <Ionicons name="add" size={24} />
             </PrimaryButton>
           </View>
         </View>
@@ -98,6 +104,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   instructionText: {
-    marginBottom: 12
-  }
+    marginBottom: 12,
+  },
 });
