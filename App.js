@@ -11,6 +11,7 @@ import GameOverScreen from './screens/GameOverScreen';
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [guessRounds, setGuessRounds] = useState(0);
   const [gameIsOver, setGameIsOver] = useState(true);
 
   const [fontsLoaded] = useFonts({
@@ -40,11 +41,16 @@ export default function App() {
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen />;
+    screen = <GameOverScreen userNumber={userNumber} roundsNumber={guessRounds} onStartNewGame={startNewGameHandler}/>;
   }
 
   function gameOverHandler() {
     setGameIsOver(true);
+  }
+
+  function startNewGameHandler() {
+    setGuessRounds(0);
+    setUserNumber(null);
   }
 
   return (
