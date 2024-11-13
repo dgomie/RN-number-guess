@@ -5,6 +5,7 @@ import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
+import GuessLog from '../components/game/GuessLog';
 import { Ionicons } from '@expo/vector-icons';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
@@ -63,6 +64,8 @@ export default function GameScreen({ userNumber, gameOverHandler }) {
     setGuessRounds((prevGuessRounds) => [newRandNum, ...prevGuessRounds]);
   }
 
+  const guestRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screen}>
       <Title>Opponent's Guess</Title>
@@ -87,10 +90,17 @@ export default function GameScreen({ userNumber, gameOverHandler }) {
           </View>
         </View>
       </Card>
-      <View>
+      <View style={styles.listContainer}>
         <FlatList
           data={guessRounds}
-          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          renderItem={(itemData) => (
+            <GuessLog
+              roundNumber={guestRoundsListLength - itemData.index}
+              guess={itemData.item}
+            >
+              {itemData.item}
+            </GuessLog>
+          )}
           keyExtractor={(item) => item}
         />
       </View>
@@ -112,4 +122,8 @@ const styles = StyleSheet.create({
   instructionText: {
     marginBottom: 12,
   },
+  listContainer: {
+    flex: 1,
+    padding: 16,
+  }
 });
