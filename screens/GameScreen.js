@@ -88,7 +88,6 @@ export default function GameScreen({ userNumber, gameOverHandler }) {
         </View>
       </Card>
       <View>
-        {/* {guessRounds.map(guessRound => <Text key={guessRound}>{guessRound}</Text>)} */}
         <FlatList
           data={guessRounds}
           renderItem={(itemData) => <Text>{itemData.item}</Text>}
