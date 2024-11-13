@@ -29,7 +29,7 @@ export default function GameScreen({ userNumber, gameOverHandler }) {
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      gameOverHandler();
+      gameOverHandler(guessRounds.length);
     }
   }, [currentGuess, userNumber, gameOverHandler]);
 
