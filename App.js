@@ -1,8 +1,8 @@
 import { StyleSheet, ImageBackground, SafeAreaView } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useFonts } from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import { useState } from 'react';
+import * as SplashScreen from 'expo-splash-screen';
+import { useState, useEffect } from 'react';
 import Colors from './util/colors';
 
 import StartGameScreen from './screens/StartGameScreen';
@@ -19,8 +19,14 @@ export default function App() {
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
   });
 
-  if (!fontsLoaded){
-    return <AppLoading />
+  useEffect(() => {
+    if (fontsLoaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    return null;
   }
 
   function pickedNumberHandler(pickedNumber) {
